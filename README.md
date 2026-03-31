@@ -977,3 +977,72 @@ These commands exist but are disabled in public builds (`isEnabled: () => false,
 *Generated 2026-03-31 from analysis of https://github.com/nirholas/claude-code*
 *512,000+ lines of TypeScript examined across 1,900 files*
 *6 parallel analysis agents deployed, 2+ MB of raw findings compiled*
+
+---
+
+## 25. API BETA HEADERS (dates exactes)
+
+| Header | Date | Purpose |
+|--------|------|---------|
+| `claude-code-20250219` | 2025-02-19 | Base Claude Code header |
+| `interleaved-thinking-2025-05-14` | 2025-05-14 | Interleaved thinking |
+| `context-1m-2025-08-07` | 2025-08-07 | 1M token context |
+| `context-management-2025-06-27` | 2025-06-27 | Context management |
+| `structured-outputs-2025-12-15` | 2025-12-15 | Structured outputs |
+| `web-search-2025-03-05` | 2025-03-05 | Web search |
+| `advanced-tool-use-2025-11-20` | 2025-11-20 | Tool search (1st party) |
+| `tool-search-tool-2025-10-19` | 2025-10-19 | Tool search (3P/Bedrock/Vertex) |
+| `effort-2025-11-24` | 2025-11-24 | Compute effort control |
+| `task-budgets-2026-03-13` | 2026-03-13 | Task budgets |
+| `prompt-caching-scope-2026-01-05` | 2026-01-05 | Prompt cache scoping |
+| `fast-mode-2026-02-01` | 2026-02-01 | Fast mode |
+| `redact-thinking-2026-02-12` | 2026-02-12 | Thinking redaction |
+| `token-efficient-tools-2026-03-28` | 2026-03-28 | Token-efficient tools |
+| `summarize-connector-text-2026-03-13` | 2026-03-13 | Connector text summarization |
+| `afk-mode-2026-01-31` | 2026-01-31 | AFK/transcript classifier |
+| `cli-internal-2026-02-09` | 2026-02-09 | Ant-only internal |
+| `advisor-tool-2026-03-01` | 2026-03-01 | Advisor feature |
+| `ccr-byoc-2025-07-29` | 2025-07-29 | Cloud Code Remote (BYOC) |
+
+## 26. ADVISOR FEATURE (Parallel Observer Model)
+
+A parallel model that observes the conversation and injects suggestions/corrections:
+- Activated via beta header `advisor-tool-2026-03-01`
+- Maintains a separate advisor history
+- Can suggest corrections mid-conversation
+- Runs alongside the main model
+
+## 27. CCR (Claude Code Remote) - Cloud Execution
+
+Execute agents in Anthropic's cloud infrastructure:
+- `isolation: 'remote'` in AgentTool
+- BYOC = Bring Your Own Compute
+- Beta header: `ccr-byoc-2025-07-29`
+- Used by `/ultraplan` for 30-minute cloud planning sessions
+- Self-hosted runner: `claude self-hosted-runner` (ant-only)
+- Environment runner: `claude environment-runner` (ant-only)
+
+## 28. ALL 27 HOOK EVENTS
+
+Complete list of SDK hook events:
+`PreToolUse`, `PostToolUse`, `PostToolUseFailure`, `Notification`, `UserPromptSubmit`, `SessionStart`, `SessionEnd`, `Stop`, `StopFailure`, `SubagentStart`, `SubagentStop`, `PreCompact`, `PostCompact`, `PermissionRequest`, `PermissionDenied`, `Setup`, `TeammateIdle`, `TaskCreated`, `TaskCompleted`, `Elicitation`, `ElicitationResult`, `ConfigChange`, `WorktreeCreate`, `WorktreeRemove`, `InstructionsLoaded`, `CwdChanged`, `FileChanged`
+
+## 29. COMPLETE CONFIG SETTINGS
+
+All modifiable settings via `/config`:
+- `theme`, `outputStyle`, `editorMode` (normal/vim), `verbose`
+- `model`, `thinkingEnabled`, `autoCompactEnabled`
+- `autoMemoryEnabled`, `autoDreamEnabled` (KAIROS)
+- `fileCheckpointingEnabled`, `todoFeatureEnabled`
+- `remoteControlAtStartup` (BRIDGE_MODE)
+- `taskCompleteNotifEnabled`, `inputNeededNotifEnabled`, `agentPushNotifEnabled` (KAIROS push)
+- `classifierPermissionsEnabled` (ant-only)
+- `voiceEnabled` (VOICE_MODE)
+
+## 30. AFK MODE (Transcript Classifier)
+
+Background transcript classifier that analyzes sessions:
+- Beta header: `afk-mode-2026-01-31`
+- Feature gate: `TRANSCRIPT_CLASSIFIER`
+- Setting: `classifierPermissionsEnabled` (ant-only)
+- Analyzes conversation patterns during idle time
