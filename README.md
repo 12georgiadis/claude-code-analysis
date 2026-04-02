@@ -980,6 +980,12 @@ These commands exist but are disabled in public builds (`isEnabled: () => false,
 
 ---
 
+## NEW: Coding Agents Comparison (April 2026)
+
+**[CODING-AGENTS-COMPARISON-2026-04.md](CODING-AGENTS-COMPARISON-2026-04.md)** — A technical comparison of Claude Code vs OpenCode vs OpenClaude vs every other coding agent on the market. Based on source code analysis, not marketing. Includes model ranking for fallback when Claude hits limits, and the orchestrator layer (OpenClaw, Hermes Agent, Pinokio).
+
+---
+
 ## 25. API BETA HEADERS (dates exactes)
 
 | Header | Date | Purpose |
